@@ -40,41 +40,41 @@ Airplane.prototype.land = function () {
 */
 
 function Person(name, age) {
-  this.name = name;
-  this.age = age;
-  this.stomach = [];
+  // this.name = name;
+  // this.age = age;
+  // this.stomach = [];
 }
 
-Person.prototype.eat = function(edible){
-  if (this.stomach.length < 10){
-    this.stomach.push(edible);
-  }
-}
+// Person.prototype.eat = function(edible){
+//   if (this.stomach.length < 10){
+//     this.stomach.push(edible);
+//   }
+// }
 
-Person.prototype.poop = function(){
-  this.stomach = [];
-}
+// Person.prototype.poop = function(){
+//   this.stomach = [];
+// }
 
-Person.prototype.toString = function(){
-  return `${this.name}, ${this.age}`;
-}
+// Person.prototype.toString = function(){
+//   return `${this.name}, ${this.age}`;
+// }
 
-const mason = new Person('Mason', 26);
-const allison = new Person('Allison', 22);
+// const mason = new Person('Mason', 26);
+// const allison = new Person('Allison', 22);
 
-mason.eat('Tacos');
-mason.eat('Pizza');
-mason.eat('Sushi');
-mason.eat('Pasta');
-mason.eat('Burger');
+// mason.eat('Tacos');
+// mason.eat('Pizza');
+// mason.eat('Sushi');
+// mason.eat('Pasta');
+// mason.eat('Burger');
 
-console.log(mason.stomach);
+// console.log(mason.stomach);
 
-mason.poop();
+// mason.poop();
 
-console.log(mason.stomach);
+// console.log(mason.stomach);
 
-console.log(mason.toString());
+// console.log(mason.toString());
 
 
 
@@ -103,16 +103,24 @@ Car.prototype.fill = function(gallons){
   return this.tank += gallons;
 }
 
+Car.prototype.drive = function(distance){
+  const drivableMiles = this.tank * this.milesPerGallon;
+  if (distance <= drivableMiles){
+  this.odometer = this.odometer + distance;
+  this.tank = this.tank - (distance / this.milesPerGallon);
+  } else {
+    this.tank = 0;
+    this.odometer = this.odometer + drivableMiles;
+    return `I ran out of fuel at ${this.odometer} miles`;
+  }
+ }
 
-const jeep = new Car('Jeep', 50);
+ const jeep = new Car('Jeep', 50);
 
 jeep.fill(30);
+console.log(jeep.drive(500));
 
 console.log(jeep);
-
-// Car.prototype.drive = function(distance){
-
-// }
 
 /*
   TASK 3
@@ -122,34 +130,34 @@ console.log(jeep);
         + Should return a string "Playing with x", x being the favorite toy.
 */
 function Baby(name, age, favoriteToy) {
-  Person.call(this, name, age)
-  this.favoriteToy = favoriteToy;
+  // Person.call(this, name, age)
+  // this.favoriteToy = favoriteToy;
 };
 
-Baby.prototype = Object.create(Person.prototype);
+// Baby.prototype = Object.create(Person.prototype);
 
-Baby.prototype.play = function(){
-  return `Playing with ${this.favoriteToy}`;
-};
+// Baby.prototype.play = function(){
+//   return `Playing with ${this.favoriteToy}`;
+// };
 
-const amelia = new Baby('Amelia', 2, 'Trampoline')
+// const amelia = new Baby('Amelia', 2, 'Trampoline')
 
-console.log(amelia);
-amelia.eat('Noodles');
-console.log(amelia.stomach);
-amelia.poop();
-console.log(amelia.stomach);
-console.log(amelia.toString());
-console.log(amelia.play());
+// console.log(amelia);
+// amelia.eat('Noodles');
+// console.log(amelia.stomach);
+// amelia.poop();
+// console.log(amelia.stomach);
+// console.log(amelia.toString());
+// console.log(amelia.play());
 
 
 /* 
   TASK 4
   In your own words explain the four principles for the "this" keyword below:
-  1. New Binding
-  2. Implicit
-  3. Explicit
-  4. Window
+  1. New - this points to the newly created binding
+  2. Implicit - appliesd to objects with methods
+  3. Explicit - explicitly passes in argument
+  4. Window - if no other rules apply. This returns error
 */
 
 
